@@ -161,7 +161,7 @@ class Article < ApplicationRecord
             valor = @article.similaridade(str1,str2) 
             @article.update("textReady": "") 
             if valor != 100
-                rank.append([valor,@article.id,@article.paragraph])
+                rank.append([valor,@article.id,@article.title])
             end    
         end 
         @art.update("textReady": "")  
