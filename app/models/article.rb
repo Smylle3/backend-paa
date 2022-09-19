@@ -1,7 +1,6 @@
 class Article < ApplicationRecord
     require 'rss'
     require 'open-uri' 
-    has_many :like
 
     def get_news
     articles = []
@@ -160,10 +159,12 @@ class Article < ApplicationRecord
             str1 = @art.textReady
             str2 = @article.textReady
             valor = @article.similaridade(str1,str2) 
+            @article.update("textReady": "") 
             if valor != 100
-                rank.append([valor,@article])
+                rank.append([valor,@article.id,@article.paragraph])
             end    
-        end   
+        end 
+        @art.update("textReady": "")  
         return rank.sort.reverse
     end    
         

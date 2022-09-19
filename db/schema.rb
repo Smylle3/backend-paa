@@ -25,17 +25,6 @@ ActiveRecord::Schema.define(version: 2022_09_19_144346) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "textReady"
     t.string "like"
-    t.string "number"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.boolean "active"
-    t.boolean "unlike"
-    t.bigint "article_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_likes_on_article_id"
-  end
-
-  add_foreign_key "likes", "articles"
 end

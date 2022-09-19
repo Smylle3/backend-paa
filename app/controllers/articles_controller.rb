@@ -41,7 +41,8 @@ class ArticlesController < ApplicationController
     
     # GET /articles/1
     def show
-        if @article.like === 1
+        @article.update("like": "#{1}") 
+        if @article.like === "1"
             rank = @article.ranking
             render json: [@article, rank], status: :ok
         else    
@@ -50,18 +51,18 @@ class ArticlesController < ApplicationController
     end
 
     def like
-        if @article.like === 0
-            @article.update("like":1)   
+        if @article.like === "0"
+            @article.update("like": "#{1}") 
         else
-            @article.update("like":0) 
+            @article.update("like": "#{0}") 
         end        
     end 
     
     def deslike
-        if @article.like === 0
-            @article.update("like":2)   
+        if @article.like === "0"
+            @article.update("like": "#{2}")   
         else
-            @article.update("like":0) 
+            @article.update("like": "#{0}") 
         end        
     end
   
