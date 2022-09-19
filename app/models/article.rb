@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
     require 'rss'
     require 'open-uri' 
-    
+    has_many :like
 
     def get_news
     articles = []

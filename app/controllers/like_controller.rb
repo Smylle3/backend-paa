@@ -1,33 +1,36 @@
 class LikeController < ApplicationController
-    before_action :find_favorite, except: %i[listFavoriteByUser index]
+    before_action :find_like, except: %i[ index]
     
     def create
-        if @favorite.nil?
-            @favorite = Favorite.new(user_id: @current_user.id, system_id: params[:system_id])
-            if @favorite.save!
-                render json: @favorite, status: :created
+        puts @like
+        if @like.empty?
+            @like = Like.new(article: params[:article_id], active: true)
+            if @like.save!
+                render json: @like, status: :created
             else
-                render json: @favorite.errors, status: :unprocessable_entity
+                render json: @like.errors, status: :unprocessable_entity
             end     
         else
-            @favorite.delete
+            @like.delete
         end    
     end
     
     def index
-        @favorite = Favorite.all
-        render json: @favorite, status: :ok
+        @like = Like.all
+        render json: @like, status: :ok
     end
     
 
     private  
 
-    def find_favorite
-        array = Favorite.where(article_id: article_id.id)
+    def find_like
+        array = Like.where(article: params[:article_id])
         if array.empty?
-            @favorite = nil 
+            puts "vazio"
+            @like = []
         else  
-            @favorite = array[0]    
+            puts "te algo"
+            @like = array[0]    
         end   
     end
 

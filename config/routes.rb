@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get "articles/:id", to: "articles#show"
   get "articles", to: "articles#index"
   delete "articles/:id", to: "articles#destroy"
+  post "like", to: "like#create"
 end
