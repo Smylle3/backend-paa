@@ -152,8 +152,9 @@ class Article < ApplicationRecord
         puts lista
         @art = self
         @art.remove_stop_words
+        lista.delete(@art)
         rank = []
-        (2..lista.size).each_with_index do |news,i|
+        (0..9).each_with_index do |news,i|
             @article = lista[i]
             @article.remove_stop_words
             str1 = @art.textReady
