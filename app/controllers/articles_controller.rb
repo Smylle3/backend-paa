@@ -26,11 +26,11 @@ class ArticlesController < ApplicationController
             @article = Article.all
             render json: @article, status: :ok
         else 
-            # @article = Article.all
-            # render json: @article, status: :ok
-            @article = Article.first
-            valor = @article.ranking
-            render json: valor, status: :ok
+            @article = Article.all
+            render json: @article, status: :ok
+            # @article = Article.first
+            # valor = @article.ranking
+            # render json: valor, status: :ok
         end    
     end    
     # POST /articles
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     
     # GET /articles/1
     def show
-        @article.remove_stop_words
+        @article.update("paraghaph": @article.paraghaph.split("\n"))
         render json: @article, status: :ok
     end
   
