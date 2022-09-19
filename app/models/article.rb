@@ -150,7 +150,7 @@ class Article < ApplicationRecord
     def ranking
         lista = Article.all.sort
         puts lista
-        @art = Article.first
+        @art = self
         @art.remove_stop_words
         rank = []
         (2..lista.size).each_with_index do |news,i|
@@ -160,7 +160,7 @@ class Article < ApplicationRecord
             str2 = @article.textReady
             valor = @article.similaridade(str1,str2) 
             if valor != 100
-                rank.append([valor,@article.id])
+                rank.append([valor,@article])
             end    
         end   
         return rank.sort.reverse

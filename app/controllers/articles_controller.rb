@@ -41,7 +41,10 @@ class ArticlesController < ApplicationController
     # GET /articles/1
     def show
         @article.update("paraghaph": @article.paraghaph.split("\n"))
-        render json: @article, status: :ok
+        if @article.like.active.true?
+            rank = @article.ranking
+        end    
+        render json: [@article, rank], status: :ok
     end
   
   
