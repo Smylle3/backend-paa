@@ -41,7 +41,6 @@ class ArticlesController < ApplicationController
     
     # GET /articles/1
     def show
-        @article.update("like": "#{1}") 
         if @article.like === "1"
             rank = @article.ranking
             render json: [@article, rank], status: :ok
