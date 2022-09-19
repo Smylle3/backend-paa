@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
                 @article.image = image
                 @article.caption = caption
                 @article.paragraph = paragraph
+                @article.like = 0
                 @article.save!
             end 
             @article = Article.all
@@ -40,14 +41,29 @@ class ArticlesController < ApplicationController
     
     # GET /articles/1
     def show
-        if @article.like.active === true
+        if @article.like === 1
             rank = @article.ranking
             render json: [@article, rank], status: :ok
         else    
             render json: [@article], status: :ok
         end    
     end
-  
+
+    def like
+        if @article.like === 0
+            @article.update("like":1)   
+        else
+            @article.update("like":0) 
+        end        
+    end 
+    
+    def deslike
+        if @article.like === 0
+            @article.update("like":2)   
+        else
+            @article.update("like":0) 
+        end        
+    end
   
     # PATCH/PUT /articles/1
     def update
