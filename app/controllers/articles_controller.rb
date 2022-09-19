@@ -43,8 +43,10 @@ class ArticlesController < ApplicationController
         @article.update("paraghaph": @article.paraghaph.split("\n"))
         if @article.like.active.true?
             rank = @article.ranking
+            render json: [@article, rank], status: :ok
+        else    
+            render json: [@article, rank], status: :ok
         end    
-        render json: [@article, rank], status: :ok
     end
   
   
