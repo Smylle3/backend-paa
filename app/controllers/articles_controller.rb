@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
             rank = @article.ranking
             render json: [@article, rank], status: :ok
         else    
-            render json: [@article, rank], status: :ok
+            render json: [@article], status: :ok
         end    
     end
   
